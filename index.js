@@ -8,13 +8,19 @@ for (let i=0; i<document.querySelectorAll(".drum").length ;i++){
 
             keypresses(buttonInnerHTML);
         
-
+            buttonAnimation(buttonInnerHTML);
 
         }
     }  
-    document.addEventListener("keydown", function(event){keypresses(event.key)});
+    document.addEventListener("keydown", function(event){
+        keypresses(event.key);
+        buttonAnimation(event.key);
+    });
     
     function keypresses(key){
+        
+
+
          switch (key) {
             case "w":
                 let tom1 = new Audio('sounds/tom-1.mp3');
@@ -58,4 +64,8 @@ for (let i=0; i<document.querySelectorAll(".drum").length ;i++){
     
 }
 
-
+function buttonAnimation(currentKey){
+    const activebutton = document.querySelector("." + currentKey);
+    activebutton.classList.add("pressed");
+    setTimeout(function(){activebutton.classList.remove("pressed");}, 100);
+}
